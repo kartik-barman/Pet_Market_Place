@@ -1,0 +1,36 @@
+/* ProductOrderDetails.css */
+
+/* Table styling */
+.table {
+    border: 1px solid #ddd;
+    margin-top: 20px;
+    border-radius: 10px;
+}
+
+/* Styling for the table header */
+.table th {
+    background-color: #f8f9fa;
+    color: #495057;
+    font-weight: bold;
+}
+
+/* Alternate row color for better readability */
+.table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Table responsiveness */
+.table-responsive {
+    overflow-x: auto;
+}
+.notAvailable {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, 50%);
+}
+@media (max-width: 768px) {
+    .table th, .table td {
+        font-size: 14px;  /* Adjust font size for small screens */
+    }
+}

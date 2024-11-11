@@ -1,0 +1,189 @@
+
+.profileCard {
+    border: none;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .profileBanner {
+    height: 200px;
+    background: linear-gradient(135deg, #4a90e2 0%, #7e57c2 100%);
+    position: relative;
+  }
+  .bannerImg {
+    background-clip: content-box;
+    max-height: 200px;
+  }
+  .editBanner {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+  }
+  
+  .profileHeader {
+    display: flex;
+    align-items: flex-end;
+    margin-top: -60px;
+    margin-bottom: 20px;
+  }
+  
+  .profilePhoto {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: #f8f9fa;
+    border: 4px solid #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-right: 20px;
+  }
+  
+  .editPhoto {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 6px;
+    border-radius: 50%;
+  }
+  
+  .contactItem {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+  }
+  
+  .contactIcon {
+    margin-right: 10px;
+    color: #4a90e2;
+  }
+  
+  .statCard {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.2s;
+  }
+  
+  .statCard:hover {
+    transform: translateY(-5px);
+  }
+  
+  .statIcon {
+    font-size: 24px;
+    color: #4a90e2;
+    margin-bottom: 10px;
+  }
+  
+  .statValue {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .statLabel {
+    color: #666;
+    font-size: 14px;
+  }
+  
+  .badgeContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 16px;
+    background-color: #e3f2fd;
+    color: #1976d2;
+    border-radius: 20px;
+    font-size: 14px;
+  }
+  
+  .petCard {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    transition: transform 0.2s;
+  }
+  
+  .petCard:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .petIcon {
+    font-size: 24px;
+    color: #4a90e2;
+    margin-right: 15px;
+  }
+  
+  .petInfo {
+    flex: 1;
+  }
+  /* Order Card Styling */
+.order-card {
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.order-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Order Card Body Styling */
+.order-card-body {
+  padding: 1.5rem;
+  border-radius: 8px;
+}
+
+/* Status Badge Styling */
+.statusBadge {
+  padding: 0.4rem 0.8rem;
+  border-radius: 12px;
+  color: white;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+/* View Details Button */
+.viewDetailsBtn {
+  background-color: #3f51b5;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  margin-top: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.viewDetailsBtn:hover {
+  background-color: #303f9f;
+}
+
+  @media (max-width: 768px) {
+    .profileHeader {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  
+    .profilePhoto {
+      margin-right: 0;
+      margin-bottom: 20px;
+    }
+    .order-card {
+      width: 100%;
+      margin: 10px 0;
+    }
+  }

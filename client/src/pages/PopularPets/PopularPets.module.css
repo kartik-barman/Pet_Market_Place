@@ -1,0 +1,301 @@
+/* PopularPets.module.css */
+.popularPets {
+    background-color: #f8f9fa;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .sectionHeader {
+    margin-bottom: 2rem;
+    position: relative;
+  }
+  
+  .headerIcon {
+    color: #ff6b6b;
+    margin-right: 0.5rem;
+    animation: bounce 2s infinite;
+  }
+  
+  .pauseButton {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #ff6b6b;
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .pauseButton:hover {
+    background: #ff5252;
+    transform: translateY(-50%) scale(1.1);
+  }
+  
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+  }
+  
+  .petsRow {
+    display: flex;
+    transition: transform 0.5s ease;
+    margin: 0 -15px;
+  }
+  
+  .petCard {
+    flex: 0 0 25%;
+    max-width: 25%;
+    padding: 0 15px;
+    transition: transform 0.3s ease;
+  }
+  
+  .card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+    height: 100%;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  .imageContainer {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .imageContainer img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  
+  .card:hover .imageContainer img {
+    transform: scale(1.05);
+  }
+  
+  .age {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    color: #666;
+  }
+  
+  .favoriteBtn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: white;
+    border: none;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #ff6b6b;
+    opacity: 0;
+  }
+  
+  .card:hover .favoriteBtn {
+    opacity: 1;
+  }
+  
+  .favoriteBtn:hover {
+    background: #ff6b6b;
+    color: white;
+    transform: scale(1.1);
+  }
+  
+  .petInfo {
+    margin-bottom: 1rem;
+  }
+  
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .tag {
+    background: #f0f2f5;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    color: #666;
+  }
+  
+  .rating {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .starIcon {
+    color: #ffd700;
+  }
+  
+  .priceRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+  }
+  
+  .price {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #ff6b6b;
+  }
+  
+  .adoptButton {
+    background: #ff6b6b;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .adoptButton:hover {
+    background: #ff5252;
+    transform: translateX(3px);
+  }
+  
+  .navButton {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    z-index: 2;
+  }
+  
+  .prevButton {
+    left: -20px;
+  }
+  
+  .nextButton {
+    right: -20px;
+  }
+  
+  .navButton:hover:not(:disabled) {
+    background: #ff6b6b;
+    color: white;
+    transform: translateY(-50%) scale(1.1);
+  }
+  
+  .navButton:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  .indicators {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 2rem;
+  }
+  
+  .indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ddd;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .activeIndicator {
+    background: #ff6b6b;
+    transform: scale(1.2);
+  }
+  .petsRow {
+  display: flex;
+  transition: transform 0.5s ease; /* Smooth sliding transition */
+  margin: 0 -15px;
+  flex-wrap: nowrap;
+}
+
+.petCard {
+  flex: 0 0 25%; /* 4 items per row */
+  max-width: 25%;
+  padding: 0 15px;
+}
+
+@media (max-width: 991px) {
+  .petCard {
+    flex: 0 0 50%; /* 2 items per row on medium screens */
+    max-width: 50%;
+  }
+}
+
+@media (max-width: 575px) {
+  .petCard {
+    flex: 0 0 100%; /* 1 item per row on small screens */
+    max-width: 100%;
+  }
+}
+
+  @media (max-width: 1200px) {
+    .petCard {
+      flex: 0 0 33.333333%;
+      max-width: 33.333333%;
+    }
+  }
+  
+  @media (max-width: 992px) {
+    .petCard {
+      flex: 0 0 50%;
+      max-width: 50%;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .petCard {
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+    
+    .navButton {
+      display: none;
+    }
+  
+    .pauseButton {
+      position: static;
+      margin: 1rem auto;
+      transform: none;
+    }
+  }

@@ -1,0 +1,40 @@
+/* Hero.module.css */
+.hero {
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3)), url('https://res.cloudinary.com/dewwngmuf/image/upload/v1730486359/samples/animals/three-dogs.jpg') no-repeat center center;
+    background-size: cover;
+    color: #ffffff;
+    padding: 60px 0;
+    height: 100vh;
+  }
+  
+  .heroContent {
+    max-width: 600px;
+  }
+  
+  .heroTitle {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 20px;
+  }
+  
+  .heroSubtitle {
+    font-size: 1.2rem;
+    color: #dcdcdc;
+    margin-bottom: 30px;
+  }
+  
+  .heroButton {
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: #ff7f50;
+    color: #fff;
+    padding: 12px 30px;
+    border: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .heroButton:hover {
+    background-color: #ff6347;
+  }
+  

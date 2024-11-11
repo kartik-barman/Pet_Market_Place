@@ -1,0 +1,262 @@
+/* ContactPage.module.css */
+.heroSection {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                url('https://res.cloudinary.com/dewwngmuf/image/upload/v1730486363/samples/two-ladies.jpg') center/cover;
+    padding: 100px 0;
+    color: white;
+    text-align: center;
+  }
+  
+  .heroTitle {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+  }
+  
+  .heroText {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .contactSection {
+    background-color: #f8f9fa;
+    position: relative;
+    margin-top: -50px;
+  }
+  
+  .contactCard {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    height: 100%;
+    transition: transform 0.3s ease;
+  }
+  
+  .contactCard:hover {
+    transform: translateY(-5px);
+  }
+  
+  .contactIcon {
+    font-size: 2rem;
+    color: #4a90e2;
+    margin-bottom: 1.5rem;
+  }
+  
+  .contactTitle {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #333;
+  }
+  
+  .contactDetail {
+    color: #666;
+    margin-bottom: 0.5rem;
+  }
+  
+  .actionButton {
+    margin-top: 1rem;
+  }
+  
+  .formSection {
+    background-color: white;
+  }
+  
+  .formWrapper {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .formContent {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .formTitle {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #333;
+  }
+  
+  .formText {
+    color: #666;
+    margin-bottom: 2rem;
+  }
+  
+  .socialLinks {
+    display: flex;
+    gap: 1rem;
+    margin-top: auto;
+  }
+  
+  .socialIcon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #4a90e2;
+    transition: all 0.3s ease;
+  }
+  
+  .socialIcon:hover {
+    background: #4a90e2;
+    color: white;
+  }
+  
+  .decorationIcon {
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    font-size: 8rem;
+    opacity: 0.1;
+    color: #4a90e2;
+  }
+  
+  .contactForm input,
+  .contactForm textarea,
+  .contactForm select {
+    border: 2px solid #eee;
+    padding: 0.8rem;
+    border-radius: 8px;
+  }
+  
+  .contactForm input:focus,
+  .contactForm textarea:focus,
+  .contactForm select:focus {
+    border-color: #4a90e2;
+    box-shadow: none;
+  }
+  
+  .faqSection {
+    background-color: #f8f9fa;
+  }
+  
+  .sectionTitle {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #333;
+  }
+  
+  .faqItem {
+    margin-bottom: 1rem;
+    border: none;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .faqItem .accordion-button {
+    background-color: white;
+    font-weight: 600;
+    padding: 1.5rem;
+  }
+  
+  .faqItem .accordion-button:not(.collapsed) {
+    color: #4a90e2;
+    background-color: #f8f9fa;
+  }
+  
+  .faqItem .accordion-body {
+    padding: 1.5rem;
+    color: #666;
+  }
+  
+  .mapSection {
+    position: relative;
+  }
+  
+  .mapWrapper {
+    position: relative;
+    height: 400px;
+  }
+  
+  .mapOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.5);
+  }
+  
+  .quickContact {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+  }
+  
+  .whatsappButton {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #25D366;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    margin-top: 1rem;
+    transition: transform 0.3s ease;
+  }
+  
+  .whatsappButton:hover {
+    transform: scale(1.05);
+    color: white;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 992px) {
+    .heroTitle {
+      font-size: 2.5rem;
+    }
+  
+    .formTitle {
+      font-size: 2rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .formWrapper {
+      padding: 2rem;
+    }
+  
+    .formContent {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+  
+    .socialLinks {
+      justify-content: center;
+    }
+  
+    .decorationIcon {
+      display: none;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .heroTitle {
+      font-size: 2rem;
+    }
+  
+    .contactCard {
+      padding: 1.5rem;
+    }
+  }

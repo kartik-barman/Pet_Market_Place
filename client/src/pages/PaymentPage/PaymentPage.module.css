@@ -1,0 +1,86 @@
+.paymentCard {
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+    border: none;
+  }
+  
+  .methodCard {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+  }
+  
+  .methodCard:hover {
+    transform: translateY(-2px);
+  }
+  
+  .methodCardSelected {
+    border-color: #3498db;
+    background-color: #f8f9fa;
+  }
+  
+  .cardInput {
+    padding: 0.75rem;
+    border: 1px solid #dee2e6;
+    border-radius: 0.5rem;
+    transition: border-color 0.2s;
+  }
+  
+  .cardInput:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
+  }
+  
+  .securityCode {
+    width: 100px;
+  }
+  
+  .cardIcon {
+    color: #6c757d;
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  .payButton {
+    background: linear-gradient(45deg, #3498db, #2980b9);
+    border: none;
+    padding: 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+  
+  .payButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .orderSummary {
+    background-color: #f8f9fa;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+  }
+  
+  .summaryItem {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px dashed #dee2e6;
+  }
+  
+  .summaryItem:last-child {
+    border-bottom: none;
+  }
+  
+  .inputGroup {
+    position: relative;
+    margin-bottom: 1rem;
+  }
+  
+  .secureLabel {
+    font-size: 0.875rem;
+    color: #28a745;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }

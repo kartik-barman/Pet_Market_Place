@@ -1,0 +1,48 @@
+.pagination {
+    gap: 5px;
+  }
+  
+  .page-item.active .page-link {
+    background-color: #6b46c1;
+    border-color: #6b46c1;
+  }
+  
+  .custom-page-link {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50% !important;
+    color: #6b46c1;
+    border: 1px solid #dee2e6;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .custom-page-link:hover:not(.disabled) {
+    background-color: #f3f0ff;
+    color: #6b46c1;
+    border-color: #6b46c1;
+  }
+  
+  .page-item.disabled .custom-page-link {
+    background-color: #f8f9fa;
+    color: #6c757d;
+  }
+  
+  .pagination-icon {
+    width: 14px;
+    height: 14px;
+  }
+  
+  /* Focus state */
+  .custom-page-link:focus {
+    box-shadow: 0 0 0 0.2rem rgba(107, 70, 193, 0.25);
+  }
+  
+  /* Active state hover */
+  .page-item.active .custom-page-link:hover {
+    background-color: #553c9a;
+    border-color: #553c9a;
+  }

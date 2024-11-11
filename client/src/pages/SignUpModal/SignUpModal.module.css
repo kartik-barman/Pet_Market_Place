@@ -1,0 +1,65 @@
+.modalTitle {
+    font-weight: bold;
+    color: #343a40;
+    font-size: 1.5rem;
+  }
+  
+  .form {
+    padding: 1rem;
+  }
+  
+  .formLabel {
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    color: #495057;
+  }
+  
+  .formControl {
+    border-color: #ced4da;
+    border-radius: 4px;
+  }
+  
+  .formControl:focus {
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+  
+  .submitButton {
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+  
+  .submitButton:hover {
+    background-color: #0056b3;
+    border-color: #004a99;
+  }
+  
+  .icon {
+    margin-right: 0.5rem;
+    color: #007bff;
+  }
+  
+  .errorMessage {
+    color: #dc3545;
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+  }
+  .footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+  
+  .registerLink {
+    margin-left: 5px;
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .registerLink:hover {
+    text-decoration: underline;
+  }
+    

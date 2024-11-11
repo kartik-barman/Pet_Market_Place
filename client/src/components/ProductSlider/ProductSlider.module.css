@@ -1,0 +1,186 @@
+/* Existing styles */
+.sliderContainer {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    flex-direction: column; /* Stack vertically for the bottom navigation */
+  }
+  
+  .productContainer {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 50px; /* Space for bottom navigation */
+    transition: transform 0.3s ease-in-out; /* Smooth slide transition */
+  }
+  
+  .productCard {
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 350px; /* Ensures each product card maintains its size */
+    flex-grow: 0;
+    flex-shrink: 0;
+    transition: transform 0.3s ease-in-out; /* Smooth card transition */
+  }
+  
+  .productImage {
+    width: 100%;
+    border-radius: 8px;
+  }
+  
+  .productInfo {
+    padding-top: 10px;
+  }
+  
+  .productName {
+    font-size: 1rem;
+    font-weight: 600;
+  }
+  
+  .productPrice {
+    color: #5e6d77;
+    font-size: 0.9rem;
+  }
+  
+  .addToCartBtn {
+    background-color: #6b46c1;
+    color: #fff;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .addToCartBtn:hover {
+    background-color: #553c9a;
+  }
+  
+  /* Button styling */
+  .prevBtn, .nextBtn {
+    background-color: #fff;
+    border: none;
+    font-size: 2rem;
+    color: #6b46c1;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    z-index: 1;
+    transform: translateY(-50%);
+    padding: 0.5rem;
+  }
+  
+  .prevBtn {
+    left: 10px;
+  }
+  
+  .nextBtn {
+    right: 10px;
+  }
+  
+  /* Bottom Navigation */
+  .bottomNav {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    padding: 10px 0;
+  }
+  
+  .navDot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #d1d5db;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .navDot:hover {
+    background-color: #6b46c1;
+  }
+  
+  .activeDot {
+    background-color: #6b46c1;
+  }
+  
+  /* Responsive Design */
+  
+  /* Small Devices */
+  @media (max-width: 767px) {
+    .productContainer {
+      gap: 0.5rem; /* Smaller gap between product cards */
+    }
+  
+    .productCard {
+      min-width: 120px; /* Reduce card size on small screens */
+    }
+  
+    .prevBtn, .nextBtn {
+      font-size: 1.5rem; /* Smaller navigation buttons */
+    }
+  
+    .bottomNav {
+      padding: 8px 0;
+    }
+  
+    .navDot {
+      width: 8px; /* Smaller navigation dots */
+      height: 8px;
+    }
+  }
+  
+  /* Medium Devices (Tablets) */
+  @media (max-width: 1024px) {
+    .productContainer {
+      gap: 1rem; /* Medium gap for tablets */
+    }
+  
+    .productCard {
+      min-width: 140px; /* Adjust card size for tablets */
+    }
+  
+    .prevBtn, .nextBtn {
+      font-size: 1.8rem; /* Slightly smaller buttons */
+    }
+  
+    .bottomNav {
+      padding: 10px 0;
+    }
+  
+    .navDot {
+      width: 10px; /* Medium size navigation dots */
+      height: 10px;
+    }
+  }
+  
+  /* Large Devices (Desktops) */
+  @media (min-width: 1025px) {
+    .productContainer {
+      gap: 1rem; /* Maintain larger gap for desktops */
+    }
+  
+    .productCard {
+      min-width: 180px; /* Standard size on desktops */
+    }
+  
+    .prevBtn, .nextBtn {
+      font-size: 2rem; /* Larger buttons for desktop */
+    }
+  
+    .bottomNav {
+      padding: 12px 0;
+    }
+  
+    .navDot {
+      width: 12px; /* Larger dots for desktop */
+      height: 12px;
+    }
+  }
+  

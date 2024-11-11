@@ -1,0 +1,194 @@
+.trendingSection {
+    padding: 3rem 0;
+    background-color: #f8fafc;
+  }
+  
+  .sectionTitle {
+    position: relative;
+    margin-bottom: 2.5rem;
+    text-align: center;
+  }
+  
+  .sectionTitle::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #6b46c1 0%, #9f7aea 100%);
+    border-radius: 2px;
+  }
+  
+  .card {
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    cursor: pointer;
+    background: #ffffff;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .imageContainer {
+    position: relative;
+    padding-top: 75%; /* 4:3 Aspect Ratio */
+    overflow: hidden;
+  }
+  
+  .image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  
+  .card:hover .image {
+    transform: scale(1.05);
+  }
+  
+  .badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .trending {
+    background: linear-gradient(90deg, #6b46c1 0%, #9f7aea 100%);
+    color: white;
+  }
+  
+  .cardBody {
+    padding: 1.5rem;
+  }
+  
+  .petName {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #2d3748;
+  }
+  
+  .petInfo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #718096;
+    margin-bottom: 0.5rem;
+  }
+  
+  .petIcon {
+    color: #6b46c1;
+  }
+  
+  .price {
+    font-weight: 700;
+    color: #6b46c1;
+    font-size: 1.25rem;
+    margin: 0.5rem 0;
+  }
+  
+  .stats {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 1rem;
+    border-top: 1px solid #e2e8f0;
+    color: #718096;
+  }
+  
+  .stat {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+  
+  .actionButton {
+    width: 100%;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+  
+  .viewButton {
+    background-color: #6b46c1;
+    color: white;
+  }
+  
+  .viewButton:hover {
+    background-color: #553c9a;
+  }
+  
+  .wishlistButton {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 1;
+  }
+  
+  .wishlistButton:hover {
+    background: #6b46c1;
+    color: white;
+  }
+  
+  .loadMore {
+    background: transparent;
+    border: 2px solid #6b46c1;
+    color: #6b46c1;
+    padding: 0.75rem 2rem;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    margin-top: 2rem;
+  }
+  
+  .loadMore:hover {
+    background: #6b46c1;
+    color: white;
+  }
+  
+  .filterButton {
+    border: 1px solid #e2e8f0;
+    background: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    color: #4a5568;
+    transition: all 0.3s ease;
+    margin: 0 0.5rem 1rem;
+  }
+  
+  .filterButton.active {
+    background: #6b46c1;
+    color: white;
+    border-color: #6b46c1;
+  }
+  
+  .filterButton:hover {
+    background: #6b46c1;
+    color: white;
+    border-color: #6b46c1;
+  }
