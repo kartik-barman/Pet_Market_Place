@@ -139,7 +139,7 @@ const UserProfile = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/users/update-profile",
+        "https://pet-market-place-server.onrender.com/api/users/update-profile",
         formData,
         {
           headers: {

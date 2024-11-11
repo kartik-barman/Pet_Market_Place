@@ -7,6 +7,7 @@ import { uploadFile } from "../Helper/Upload.js";
 import { sentSubscribeMail } from "../Helper/SubscribeMail.js";
 import { Subscriber } from "../models/Subscriber.js";
 import { ContactMessage } from "../models/ContactMessage.js";
+import { signUpMailSender } from "../Helper/SignUpMailSent.js";
 
 /*__________________________________________________________________________________*
  *
@@ -38,6 +39,7 @@ export const userCreateApi = async (req, res) => {
       password: hashedPassword,
     });
     const saveUser = await newUser.save();
+    await signUpMailSender(saveUser.email, saveUser.name);
     res.status(201).json({
       success: true,
       msg: "User created successfully..",
