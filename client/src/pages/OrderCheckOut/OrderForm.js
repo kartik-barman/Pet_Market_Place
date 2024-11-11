@@ -32,11 +32,14 @@ const OrderForm = () => {
   const fetchCartItems = async () => {
     if (!token) return; // Prevent fetching if not authenticated
     try {
-      const res = await axios.get("http://localhost:5000/api/users/cart/", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const res = await axios.get(
+        "https://pet-market-place-server.onrender.com/api/users/cart/",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       setCartItems(res.data.cart);
     } catch (error) {
       console.error("Cart items fetch error:", error);
@@ -44,7 +47,7 @@ const OrderForm = () => {
   };
 
   useEffect(() => {
-    fetchCartItems()
+    fetchCartItems();
   }, []);
 
   console.log(cartItems);
@@ -69,7 +72,6 @@ const OrderForm = () => {
     }));
   };
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (Object.values(formData).some((field) => !field)) {
@@ -86,7 +88,7 @@ const OrderForm = () => {
       }));
 
       const response = await axios.post(
-        "http://localhost:5000/api/users/order",
+        "https://pet-market-place-server.onrender.com/api/users/order",
         { amount, currency }
       );
       const { order_id } = response.data;
@@ -101,12 +103,14 @@ const OrderForm = () => {
           "https://cdn.dribbble.com/users/4953373/screenshots/11008972/petpal_logo-01_4x.jpg",
         order_id,
         handler: async (response) => {
-          toast.success(`Payment successful! Payment ID: ${response.razorpay_payment_id}`);
+          toast.success(
+            `Payment successful! Payment ID: ${response.razorpay_payment_id}`
+          );
           // Redirect to the cart page on successful payment
           navigate("/cart");
           try {
             const res = await axios.delete(
-              `http://localhost:5000/api/users/cart/items`,
+              `https://pet-market-place-server.onrender.com/api/users/cart/items`,
               {
                 headers: {
                   Authorization: `Bearer ${token}`,
@@ -121,9 +125,9 @@ const OrderForm = () => {
           // Once payment is successful, send the order to the backend
           try {
             const paymentSuccessResponseSent = await axios.post(
-              "http://localhost:5000/api/users/pet/order/create",
+              "https://pet-market-place-server.onrender.com/api/users/pet/order/create",
               {
-                items : orderItems,
+                items: orderItems,
                 paymentStatus: response.razorpay_payment_status,
                 totalAmount: total,
                 shippingAddress: {
@@ -140,7 +144,10 @@ const OrderForm = () => {
                 },
               }
             );
-            console.log("Order successfully submitted:", paymentSuccessResponseSent);
+            console.log(
+              "Order successfully submitted:",
+              paymentSuccessResponseSent
+            );
           } catch (error) {
             console.error("Order submit error:", error);
           }

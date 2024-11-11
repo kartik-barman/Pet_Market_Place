@@ -1,5 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { FaPaw, FaSearch, FaUserCircle, FaShoppingCart, FaBars, FaTimes, FaUser } from "react-icons/fa";
+import {
+  FaPaw,
+  FaSearch,
+  FaUserCircle,
+  FaShoppingCart,
+  FaBars,
+  FaTimes,
+  FaUser,
+} from "react-icons/fa";
 import { HiOutlineLogout } from "react-icons/hi";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./NavBar.module.css";
@@ -22,9 +30,12 @@ const NavBar = () => {
   const fetchCartItems = async () => {
     if (!isLoggedIn) return; // Fetch only if logged in
     try {
-      const res = await axios.get("http://localhost:5000/api/users/cart/", {
-        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-      });
+      const res = await axios.get(
+        "https://pet-market-place-server.onrender.com/api/users/cart/",
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        }
+      );
       setCartItems(res.data.cart);
     } catch (error) {
       console.error("Cart items fetch error:", error);
@@ -40,7 +51,11 @@ const NavBar = () => {
       <nav className={`navbar navbar-expand-lg ${styles.navbar}`}>
         <div className="container">
           {/* Brand */}
-          <Link to="/" className={styles.brand} onClick={() => setIsOpen(false)}>
+          <Link
+            to="/"
+            className={styles.brand}
+            onClick={() => setIsOpen(false)}
+          >
             <FaPaw className={styles.brandIcon} />
             <span>PetPal</span>
           </Link>
@@ -56,31 +71,47 @@ const NavBar = () => {
           </button>
 
           {/* Navbar Content */}
-          <div className={`collapse navbar-collapse ${isOpen ? "show" : ""}`} id="navbarNav">
+          <div
+            className={`collapse navbar-collapse ${isOpen ? "show" : ""}`}
+            id="navbarNav"
+          >
             <ul className="navbar-nav mx-auto">
               <li className="nav-item">
-                <Link className={`nav-link ${styles.navLink}`} to="/" onClick={() => setIsOpen(false)}>
+                <Link
+                  className={`nav-link ${styles.navLink}`}
+                  to="/"
+                  onClick={() => setIsOpen(false)}
+                >
                   Home
                 </Link>
               </li>
-              {isLoggedIn && userType === "Seller" && ( // Show only if logged in as Seller
-                <li className="nav-item">
-                  <Link
-                    className={`nav-link ${styles.navLink}`}
-                    to="/sell"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    Sell a Pet
-                  </Link>
-                </li>
-              )}
+              {isLoggedIn &&
+                userType === "Seller" && ( // Show only if logged in as Seller
+                  <li className="nav-item">
+                    <Link
+                      className={`nav-link ${styles.navLink}`}
+                      to="/sell"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      Sell a Pet
+                    </Link>
+                  </li>
+                )}
               <li className="nav-item">
-                <Link className={`nav-link ${styles.navLink}`} to="/about" onClick={() => setIsOpen(false)}>
+                <Link
+                  className={`nav-link ${styles.navLink}`}
+                  to="/about"
+                  onClick={() => setIsOpen(false)}
+                >
                   About Us
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className={`nav-link ${styles.navLink}`} to="/contact" onClick={() => setIsOpen(false)}>
+                <Link
+                  className={`nav-link ${styles.navLink}`}
+                  to="/contact"
+                  onClick={() => setIsOpen(false)}
+                >
                   Contact
                 </Link>
               </li>
@@ -91,7 +122,9 @@ const NavBar = () => {
               {isLoggedIn && (
                 <Link to="/cart" className={styles.iconButton}>
                   <FaShoppingCart className={styles.navIcon} />
-                  <span className={`${styles.badge} bg-primary`}>{cartItems?.length || 0}</span>
+                  <span className={`${styles.badge} bg-primary`}>
+                    {cartItems?.length || 0}
+                  </span>
                 </Link>
               )}
               <button
@@ -105,7 +138,11 @@ const NavBar = () => {
                   }
                 }}
               >
-                {isLoggedIn ? <FaUserCircle className={styles.navIcon} /> : <FaUser className={styles.navIcon} />}
+                {isLoggedIn ? (
+                  <FaUserCircle className={styles.navIcon} />
+                ) : (
+                  <FaUser className={styles.navIcon} />
+                )}
               </button>
               {isLoggedIn && (
                 <HiOutlineLogout

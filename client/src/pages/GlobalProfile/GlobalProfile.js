@@ -14,56 +14,65 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 
 const GlobalProfile = () => {
-    const {userId} = useParams();
-    const [user, setUser] = useState(null)
-    const fetchUser = async () => {
-        try {
-          const res = await axios.get(`http://localhost:5000/api/users/user/${userId}`);
-          const { user } = res.data;
-          setUser(user);
-        } catch (error) {
-          console.error(error);
-        }
-      };
-    
-      useEffect(() => {
-        fetchUser();
-      }, []);
-      console.log(user?.pets || null);
-//   const user = {
-//     name: "John Doe",
-//     email: "john.doe@example.com",
-//     phone: "123-456-7890",
-//     location: "New York, USA",
-//     joinDate: "January 2022",
-//     about: "Lover of pets, passionate about animal welfare.",
-//     stats: {
-//       pets: 3,
-//       reviews: 15,
-//       favorites: 24,
-//       messages: 8,
-//     },
-//     badges: ["Verified Owner", "Top Reviewer", "Community Leader"],
-//     pets: [
-//       { name: "Max", type: "Dog", breed: "Golden Retriever", age: 3 },
-//       { name: "Luna", type: "Dog", breed: "Husky", age: 2 },
-//       { name: "Milo", type: "Cat", breed: "Persian", age: 4 },
-//     ],
-//     avatar: "https://via.placeholder.com/150", // Placeholder avatar
-//     banner: "https://via.placeholder.com/600x200", // Placeholder banner
-//     createdAt: "2022-01-01T00:00:00Z", // Example date
-//   };
+  const { userId } = useParams();
+  const [user, setUser] = useState(null);
+  const fetchUser = async () => {
+    try {
+      const res = await axios.get(
+        `https://pet-market-place-server.onrender.com/api/users/user/${userId}`
+      );
+      const { user } = res.data;
+      setUser(user);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchUser();
+  }, []);
+  console.log(user?.pets || null);
+  //   const user = {
+  //     name: "John Doe",
+  //     email: "john.doe@example.com",
+  //     phone: "123-456-7890",
+  //     location: "New York, USA",
+  //     joinDate: "January 2022",
+  //     about: "Lover of pets, passionate about animal welfare.",
+  //     stats: {
+  //       pets: 3,
+  //       reviews: 15,
+  //       favorites: 24,
+  //       messages: 8,
+  //     },
+  //     badges: ["Verified Owner", "Top Reviewer", "Community Leader"],
+  //     pets: [
+  //       { name: "Max", type: "Dog", breed: "Golden Retriever", age: 3 },
+  //       { name: "Luna", type: "Dog", breed: "Husky", age: 2 },
+  //       { name: "Milo", type: "Cat", breed: "Persian", age: 4 },
+  //     ],
+  //     avatar: "https://via.placeholder.com/150", // Placeholder avatar
+  //     banner: "https://via.placeholder.com/600x200", // Placeholder banner
+  //     createdAt: "2022-01-01T00:00:00Z", // Example date
+  //   };
 
   const createdAt = user?.createdAt;
   const date = new Date(createdAt);
-  const formattedDate = date.toLocaleString("en-US", { month: "long", year: "numeric" });
+  const formattedDate = date.toLocaleString("en-US", {
+    month: "long",
+    year: "numeric",
+  });
 
   return (
     <div className="container py-5">
       <div className={`card ${styles.profileCard}`}>
         {/* Banner */}
         <div className={styles.profileBanner}>
-          <img src={user?.banner} alt="Profile Banner" className={`${styles.bannerImg} w-100`} />
+          <img
+            src={user?.banner}
+            alt="Profile Banner"
+            className={`${styles.bannerImg} w-100`}
+          />
         </div>
 
         <div className="card-body">
@@ -73,7 +82,11 @@ const GlobalProfile = () => {
               <img
                 src={user?.avatar}
                 alt="Profile"
-                style={{ width: "120px", height: "120px", borderRadius: "100%" }}
+                style={{
+                  width: "120px",
+                  height: "120px",
+                  borderRadius: "100%",
+                }}
               />
             </div>
             <div className={styles.profileInfo}>
@@ -162,8 +175,17 @@ const GlobalProfile = () => {
             <h5>My Pets</h5>
             <div className="d-flex flex-wrap">
               {user?.pets.map((pet, index) => (
-                <div key={index} className="card me-2 mb-3" style={{ width: "18rem" }}>
-                  <img src={pet?.images[0]} className="card-img-top" alt={pet.name} style={{maxHeight : "150px"}}/>
+                <div
+                  key={index}
+                  className="card me-2 mb-3"
+                  style={{ width: "18rem" }}
+                >
+                  <img
+                    src={pet?.images[0]}
+                    className="card-img-top"
+                    alt={pet.name}
+                    style={{ maxHeight: "150px" }}
+                  />
                   <div className="card-body">
                     <h6 className="card-title">{pet.name}</h6>
                     <p className="card-text">

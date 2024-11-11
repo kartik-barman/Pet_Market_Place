@@ -22,7 +22,9 @@ const PopularPets = () => {
   // Fetch pets data from the API
   const fetchPet = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/pets/");
+      const res = await axios.get(
+        "https://pet-market-place-server.onrender.com/api/pets/"
+      );
       const result = res.data;
       setPets(result.pets);
     } catch (error) {
@@ -41,7 +43,7 @@ const PopularPets = () => {
     }
     try {
       const res = await axios.put(
-        `http://localhost:5000/api/users/cart/${petId}`,
+        `https://pet-market-place-server.onrender.com/api/users/cart/${petId}`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );

@@ -17,21 +17,24 @@ import {
 import styles from "./Cart.module.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import toast,{ Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import { useAuth } from "../../context/AuthContext";
 
 const Cart = () => {
   const isLoggedIn = localStorage.getItem("isLoggedIn");
   const [cartItems, setCartItems] = useState([]);
   const token = localStorage.getItem("token");
-const fetchCartItems = async () => {
+  const fetchCartItems = async () => {
     if (!token) return; // Prevent fetching if not authenticated
     try {
-      const res = await axios.get("http://localhost:5000/api/users/cart/", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const res = await axios.get(
+        "https://pet-market-place-server.onrender.com/api/users/cart/",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       setCartItems(res.data.cart);
     } catch (error) {
       console.error("Cart items fetch error:", error);
@@ -46,7 +49,7 @@ const fetchCartItems = async () => {
   const updateQuantity = async (id, newQuantity) => {
     try {
       const res = await axios.put(
-        `http://localhost:5000/api/users/cart/item/${id}`,
+        `https://pet-market-place-server.onrender.com/api/users/cart/item/${id}`,
         { newQuantity },
         {
           headers: {
@@ -55,7 +58,7 @@ const fetchCartItems = async () => {
         }
       );
       console.log(res.data.cart);
-      fetchCartItems()
+      fetchCartItems();
     } catch (error) {
       console.error("Cart items fetch error :", error);
       toast.error("Failed to update item quantity.");
@@ -67,7 +70,7 @@ const fetchCartItems = async () => {
   const removeFromCart = async (id) => {
     try {
       const res = await axios.delete(
-        `http://localhost:5000/api/users/cart/item/${id}`,
+        `https://pet-market-place-server.onrender.com/api/users/cart/item/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -87,7 +90,7 @@ const fetchCartItems = async () => {
     }
   };
 
- // Calculation Part 
+  // Calculation Part
 
   const subtotal = cartItems.reduce(
     (sum, item) => sum + item.price * item.quantity,
@@ -106,7 +109,7 @@ const fetchCartItems = async () => {
         Shopping Cart
       </h1>
 
-      {cartItems.length === 0  ? (
+      {cartItems.length === 0 ? (
         <div className={styles.emptyCart}>
           <FaShoppingCart size={48} className="text-muted mb-3" />
           <h3 className="text-muted">Your cart is empty</h3>
@@ -157,8 +160,10 @@ const fetchCartItems = async () => {
                         </div>
                         <div className="mt-3 d-flex align-items-center gap-2">
                           <button
-                            onClick={() => 
-                              item.quantity > 1 ? updateQuantity(item._id, item.quantity - 1) : null
+                            onClick={() =>
+                              item.quantity > 1
+                                ? updateQuantity(item._id, item.quantity - 1)
+                                : null
                             }
                             className={styles.quantityButton}
                             disabled={item.quantity === 1}

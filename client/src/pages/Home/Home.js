@@ -3,7 +3,18 @@ import axios from "axios";
 import Pagination from "../../components/Pagination/Pagination";
 import { useAuth } from "../../context/AuthContext";
 import { Link } from "react-router-dom";
-import { FaHeart, FaMapMarkerAlt, FaBirthdayCake, FaEye, FaComments, FaStar, FaDog, FaCat, FaKiwiBird, FaOtter } from "react-icons/fa";
+import {
+  FaHeart,
+  FaMapMarkerAlt,
+  FaBirthdayCake,
+  FaEye,
+  FaComments,
+  FaStar,
+  FaDog,
+  FaCat,
+  FaKiwiBird,
+  FaOtter,
+} from "react-icons/fa";
 import styles from "./Home.module.css";
 import Hero from "../Hero/Hero";
 import PopularPets from "../PopularPets/PopularPets";
@@ -20,25 +31,28 @@ const Home = () => {
   // Fetch pets based on current page and limit
   const fetchPet = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/pets");
-  
+      const res = await axios.get(
+        "https://pet-market-place-server.onrender.com/api/pets"
+      );
+
       const result = res.data;
-  
+
       // Sort pets by createdAt in descending order to show the latest first
-      const sortedPets = result.pets.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-  
+      const sortedPets = result.pets.sort(
+        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+      );
+
       // Apply pagination on the sorted list
       const skip = (currentPage - 1) * limit;
       const paginatedPets = sortedPets.slice(skip, skip + limit);
-  
+
       setTrendingPets(paginatedPets);
       setTotalPages(Math.ceil(sortedPets.length / limit)); // Calculate total pages based on all pets
     } catch (error) {
       console.error(error);
     }
   };
-  
-  
+
   useEffect(() => {
     fetchPet();
   }, [currentPage]);
@@ -52,7 +66,7 @@ const Home = () => {
       }
 
       const res = await axios.put(
-        `http://localhost:5000/api/pets/view/${petId}`,
+        `https://pet-market-place-server.onrender.com/api/pets/view/${petId}`,
         {},
         {
           headers: {
@@ -62,7 +76,10 @@ const Home = () => {
       );
       console.log("View count response:", res.data);
     } catch (error) {
-      console.error("Error incrementing view count:", error.response?.data || error.message);
+      console.error(
+        "Error incrementing view count:",
+        error.response?.data || error.message
+      );
     }
   };
 
@@ -87,7 +104,9 @@ const Home = () => {
   ];
 
   const filteredPets =
-    activeFilter === "all" ? trendingPets : trendingPets.filter((pet) => pet.category === activeFilter);
+    activeFilter === "all"
+      ? trendingPets
+      : trendingPets.filter((pet) => pet.category === activeFilter);
 
   return (
     <>
@@ -101,7 +120,9 @@ const Home = () => {
             {filters.map((filter, index) => (
               <button
                 key={index}
-                className={`${styles.filterButton} ${activeFilter === filter._id ? styles.active : ""}`}
+                className={`${styles.filterButton} ${
+                  activeFilter === filter._id ? styles.active : ""
+                }`}
                 onClick={() => setActiveFilter(filter.id)}
               >
                 {filter.label}
@@ -116,11 +137,11 @@ const Home = () => {
                 <div className={styles.card}>
                   <div className={styles.imageContainer}>
                     <Link to={`/pet/${pet._id}`}>
-                    <img
-                      src={pet.images[0]}
-                      alt={pet.name}
-                      className={styles.image}
-                    />
+                      <img
+                        src={pet.images[0]}
+                        alt={pet.name}
+                        className={styles.image}
+                      />
                     </Link>
                     <span className={`${styles.badge} ${styles.trending}`}>
                       Trending
@@ -133,12 +154,17 @@ const Home = () => {
                   <div className={styles.cardBody}>
                     <h3 className={styles.petName}>{pet.name}</h3>
                     <p className={styles.petName} style={{ color: "#6b46c1" }}>
-                      <Link to={`/profile/${pet.seller._id}`} className="text-decoration-none">
-                      Seller : {pet.seller.name}
+                      <Link
+                        to={`/profile/${pet.seller._id}`}
+                        className="text-decoration-none"
+                      >
+                        Seller : {pet.seller.name}
                       </Link>
                     </p>
                     <div className={styles.petInfo}>
-                      <span className={styles.petIcon}>{getIcon(pet.category)}</span>
+                      <span className={styles.petIcon}>
+                        {getIcon(pet.category)}
+                      </span>
                       <span>{pet.breed}</span>
                     </div>
 
@@ -169,7 +195,10 @@ const Home = () => {
                       </div>
                     </div>
 
-                    <Link to={`/pet/${pet._id}`} className="text-decoration-none text-white">
+                    <Link
+                      to={`/pet/${pet._id}`}
+                      className="text-decoration-none text-white"
+                    >
                       <button
                         className={`${styles.actionButton} ${styles.viewButton} mt-3`}
                         onClick={() => {
@@ -198,7 +227,7 @@ const Home = () => {
           currentPage={currentPage}
           totalPages={totalPages}
           onPageChange={(page) => {
-            setCurrentPage(page);  // Page change without scrolling
+            setCurrentPage(page); // Page change without scrolling
           }}
         />
         <PopularPets />

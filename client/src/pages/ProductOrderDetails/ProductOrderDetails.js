@@ -12,7 +12,7 @@ const ProductOrderDetails = () => {
   const fetchAllOrder = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:5000/api/pets/pet/orders/${productId}`
+        `https://pet-market-place-server.onrender.com/api/pets/pet/orders/${productId}`
       );
       setOrders(res.data);
       console.log(res.data);
@@ -45,7 +45,7 @@ const ProductOrderDetails = () => {
   const updateStatus = async (orderId, newStatus) => {
     try {
       const res = await axios.put(
-        `http://localhost:5000/api/orders/${orderId}/status`,
+        `https://pet-market-place-server.onrender.com/api/orders/${orderId}/status`,
         { orderStatus: newStatus },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -65,9 +65,11 @@ const ProductOrderDetails = () => {
   return (
     <div className="container mt-5" style={{ height: "100vh" }}>
       <h2 className="text-center">Orders List</h2>
-      {error && <p className="text-danger" >{error}</p>}
+      {error && <p className="text-danger">{error}</p>}
       {orders.length === 0 ? (
-        <p className={`${styles.notAvailable} badge bg-danger fs-5`}>No Order Available for this Product</p>
+        <p className={`${styles.notAvailable} badge bg-danger fs-5`}>
+          No Order Available for this Product
+        </p>
       ) : (
         <table className="table table-striped table-responsive">
           <thead>

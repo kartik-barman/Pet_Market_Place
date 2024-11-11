@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import {
   FaCreditCard,
   FaPaypal,
@@ -8,37 +8,48 @@ import {
   FaRegCreditCard,
   FaCalendarAlt,
   FaShieldAlt,
-  FaCheckCircle
-} from 'react-icons/fa';
+  FaCheckCircle,
+} from "react-icons/fa";
 import { FaCcVisa } from "react-icons/fa";
 import { FaCcMastercard } from "react-icons/fa";
-import { BsBank, BsCreditCard2Front } from 'react-icons/bs';
+import { BsBank, BsCreditCard2Front } from "react-icons/bs";
 import { FaHandHoldingUsd } from "react-icons/fa";
 import { GiPayMoney } from "react-icons/gi";
-import styles from './PaymentPage.module.css';
-import axios from 'axios';
+import styles from "./PaymentPage.module.css";
+import axios from "axios";
 
 const PaymentPage = () => {
-  const [cartItems, setCartItems] = useState([])
-  const [selectedMethod, setSelectedMethod] = useState('credit-card');
-  
+  const [cartItems, setCartItems] = useState([]);
+  const [selectedMethod, setSelectedMethod] = useState("credit-card");
+
   const paymentMethods = [
-    { id: 'credit-card', name: 'Credit Card', icon: <FaCreditCard size={24} /> },
-    { id: 'paypal', name: 'PayPal', icon: <FaPaypal size={24} /> },
-    { id: 'google-pay', name: 'Google Pay', icon: <FaGooglePay size={24} /> },
-    { id: 'apple-pay', name: 'Apple Pay', icon: <FaApplePay size={24} /> },
-    { id: 'bank', name: 'Bank Transfer', icon: <BsBank size={24} /> },
-    {id : "Cash on delivery", name : "Cash On Delivery", icon : <FaHandHoldingUsd size={24} />}
+    {
+      id: "credit-card",
+      name: "Credit Card",
+      icon: <FaCreditCard size={24} />,
+    },
+    { id: "paypal", name: "PayPal", icon: <FaPaypal size={24} /> },
+    { id: "google-pay", name: "Google Pay", icon: <FaGooglePay size={24} /> },
+    { id: "apple-pay", name: "Apple Pay", icon: <FaApplePay size={24} /> },
+    { id: "bank", name: "Bank Transfer", icon: <BsBank size={24} /> },
+    {
+      id: "Cash on delivery",
+      name: "Cash On Delivery",
+      icon: <FaHandHoldingUsd size={24} />,
+    },
   ];
-  
+
   const token = localStorage.getItem("token");
   const fetchCartItems = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/users/cart/", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const res = await axios.get(
+        "https://pet-market-place-server.onrender.com/api/users/cart/",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       console.log(res.data.cart);
       setCartItems(res.data.cart);
     } catch (error) {
@@ -52,9 +63,9 @@ const PaymentPage = () => {
     (sum, item) => sum + item.price * item.quantity,
     0
   );
-const tax = subtotal * 0.08;
-const shipping = 25;
-const total = subtotal + tax + shipping;
+  const tax = subtotal * 0.08;
+  const shipping = 25;
+  const total = subtotal + tax + shipping;
   return (
     <div className="container py-5">
       <div className="row justify-content-center">
@@ -69,11 +80,17 @@ const total = subtotal + tax + shipping;
               <div className="mb-4">
                 <h5 className="mb-3">Select Payment Method</h5>
                 <div className="row g-3">
-                  {paymentMethods.map(method => (
+                  {paymentMethods.map((method) => (
                     <div key={method.id} className="col-6 col-md-4">
                       <div
-                        className={`${styles.methodCard} card h-100 p-3 text-center 
-                          ${selectedMethod === method.id ? styles.methodCardSelected : ''}`}
+                        className={`${
+                          styles.methodCard
+                        } card h-100 p-3 text-center 
+                          ${
+                            selectedMethod === method.id
+                              ? styles.methodCardSelected
+                              : ""
+                          }`}
                         onClick={() => setSelectedMethod(method.id)}
                       >
                         <div className="d-flex flex-column align-items-center gap-2">
@@ -90,7 +107,7 @@ const total = subtotal + tax + shipping;
               </div>
 
               {/* Credit Card Form */}
-              {selectedMethod === 'credit-card' && (
+              {selectedMethod === "credit-card" && (
                 <div className="mt-4">
                   <div className={styles.inputGroup}>
                     <label className="form-label">Card Number</label>
@@ -100,10 +117,13 @@ const total = subtotal + tax + shipping;
                         className={`form-control ${styles.cardInput}`}
                         placeholder="1234 5678 9012 3456"
                       />
-                      <BsCreditCard2Front className={styles.cardIcon} size={20} />
+                      <BsCreditCard2Front
+                        className={styles.cardIcon}
+                        size={20}
+                      />
                     </div>
                   </div>
-                  
+
                   <div className="row">
                     <div className="col-md-6">
                       <div className={styles.inputGroup}>
@@ -114,7 +134,10 @@ const total = subtotal + tax + shipping;
                             className={`form-control ${styles.cardInput}`}
                             placeholder="MM/YY"
                           />
-                          <FaCalendarAlt className={styles.cardIcon} size={20} />
+                          <FaCalendarAlt
+                            className={styles.cardIcon}
+                            size={20}
+                          />
                         </div>
                       </div>
                     </div>
@@ -163,9 +186,9 @@ const total = subtotal + tax + shipping;
                 </span>
                 <div className="d-flex gap-2">
                   {/* <img src="/api/placeholder/40/25" alt="Visa" className="rounded" /> */}
-                  <FaCcVisa size={30} style={{color : "blue"}} />
-                  <FaCcMastercard size={30} style={{color : "blue"}} />
-                  <GiPayMoney size={30} style={{color : "blue"}} />
+                  <FaCcVisa size={30} style={{ color: "blue" }} />
+                  <FaCcMastercard size={30} style={{ color: "blue" }} />
+                  <GiPayMoney size={30} style={{ color: "blue" }} />
                   {/* <img src="/api/placeholder/40/25" alt="Mastercard" className="rounded" />
                   <img src="/api/placeholder/40/25" alt="Amex" className="rounded" /> */}
                 </div>

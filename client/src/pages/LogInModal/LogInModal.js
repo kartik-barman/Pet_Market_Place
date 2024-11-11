@@ -25,7 +25,10 @@ const LogInModal = ({ show, handleClose }) => {
 
     try {
       const formData = { email, password };
-      const response = await axios.post("http://localhost:5000/api/users/login", formData);
+      const response = await axios.post(
+        "https://pet-market-place-server.onrender.com/api/users/login",
+        formData
+      );
       const { success, msg, token, user } = response.data;
 
       if (success) {
@@ -95,7 +98,11 @@ const LogInModal = ({ show, handleClose }) => {
               />
             </Form.Group>
 
-            <Button variant="primary" type="submit" className={`w-100 ${styles.submitButton}`}>
+            <Button
+              variant="primary"
+              type="submit"
+              className={`w-100 ${styles.submitButton}`}
+            >
               Log In
             </Button>
           </Form>
@@ -110,7 +117,12 @@ const LogInModal = ({ show, handleClose }) => {
         </Modal.Footer>
       </Modal>
 
-      {showSignUp && <SignUpModal show={showSignUp} handleClose={() => setShowSignUp(false)} />}
+      {showSignUp && (
+        <SignUpModal
+          show={showSignUp}
+          handleClose={() => setShowSignUp(false)}
+        />
+      )}
     </>
   );
 };

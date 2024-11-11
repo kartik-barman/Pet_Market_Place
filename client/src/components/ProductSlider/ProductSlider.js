@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
-import styles from './ProductSlider.module.css';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import styles from "./ProductSlider.module.css";
+import axios from "axios";
 
 const ProductSlider = () => {
   const [products, setProducts] = useState([]);
@@ -11,7 +11,9 @@ const ProductSlider = () => {
   // Fetch products from API
   const fetchPet = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/pets");
+      const res = await axios.get(
+        "https://pet-market-place-server.onrender.com/api/pets"
+      );
       const result = res.data;
       setProducts(result.pets);
     } catch (error) {
@@ -31,9 +33,9 @@ const ProductSlider = () => {
     };
 
     handleResize(); // Call on mount
-    window.addEventListener('resize', handleResize); // Re-evaluate on window resize
+    window.addEventListener("resize", handleResize); // Re-evaluate on window resize
 
-    return () => window.removeEventListener('resize', handleResize); // Clean up event listener
+    return () => window.removeEventListener("resize", handleResize); // Clean up event listener
   }, []);
 
   // Automatic slider effect
@@ -87,16 +89,22 @@ const ProductSlider = () => {
         <FaChevronLeft />
       </button>
       <div className={styles.productContainer}>
-        {products.slice(currentIndex, currentIndex + visibleCount).map((product, index) => (
-          <div key={index} className={styles.productCard}>
-            <img src={product.images[0]} alt={product.name} className={styles.productImage} />
-            <div className={styles.productInfo}>
-              <h3 className={styles.productName}>{product.name}</h3>
-              <p className={styles.productPrice}>${product.price}</p>
-              <button className={styles.addToCartBtn}>Add to Cart</button>
+        {products
+          .slice(currentIndex, currentIndex + visibleCount)
+          .map((product, index) => (
+            <div key={index} className={styles.productCard}>
+              <img
+                src={product.images[0]}
+                alt={product.name}
+                className={styles.productImage}
+              />
+              <div className={styles.productInfo}>
+                <h3 className={styles.productName}>{product.name}</h3>
+                <p className={styles.productPrice}>${product.price}</p>
+                <button className={styles.addToCartBtn}>Add to Cart</button>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
       </div>
       <button className={styles.nextBtn} onClick={handleNextClick}>
         <FaChevronRight />
@@ -107,7 +115,9 @@ const ProductSlider = () => {
         {products.map((_, index) => (
           <button
             key={index}
-            className={`${styles.navDot} ${currentIndex === index ? styles.activeDot : ''}`}
+            className={`${styles.navDot} ${
+              currentIndex === index ? styles.activeDot : ""
+            }`}
             onClick={() => handleSlideClick(index)}
           ></button>
         ))}

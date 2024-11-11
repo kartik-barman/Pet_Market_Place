@@ -31,7 +31,9 @@ const PetDetails = () => {
 
   const fetchPet = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/pets/${petId}`);
+      const res = await axios.get(
+        `https://pet-market-place-server.onrender.com/api/pets/${petId}`
+      );
       setPet(res.data.pet);
       console.log("orders : ", res.data.pet.orders);
     } catch (err) {
@@ -46,7 +48,7 @@ const PetDetails = () => {
     }
     try {
       const res = await axios.put(
-        `http://localhost:5000/api/users/cart/${petId}`,
+        `https://pet-market-place-server.onrender.com/api/users/cart/${petId}`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -66,7 +68,7 @@ const PetDetails = () => {
     }
     try {
       await axios.post(
-        `http://localhost:5000/api/pets/comment/${petId}`,
+        `https://pet-market-place-server.onrender.com/api/pets/comment/${petId}`,
         { commentText },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -85,7 +87,7 @@ const PetDetails = () => {
     }
     try {
       await axios.post(
-        `http://localhost:5000/api/pets/comment/${petId}/reply`,
+        `https://pet-market-place-server.onrender.com/api/pets/comment/${petId}/reply`,
         { commentId, replyText },
         { headers: { Authorization: `Bearer ${token}` } }
       );

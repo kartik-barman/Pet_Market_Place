@@ -68,11 +68,14 @@ const UserProfile = () => {
   ];
   const fetchUser = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/users/user", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const res = await axios.get(
+        "https://pet-market-place-server.onrender.com/api/users/user",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       const { user } = res.data;
       // console.log(res.data.user.orders[0].items[0].productId);
       console.log(user);
@@ -135,7 +138,7 @@ const UserProfile = () => {
     if (banner) formData.append("banner", banner);
 
     try {
-      await axios.post(
+      const res = await axios.post(
         "http://localhost:5000/api/users/update-profile",
         formData,
         {
@@ -145,6 +148,7 @@ const UserProfile = () => {
           },
         }
       );
+      console.log(res.data);
       toast.success("Profile updated successfully!");
       fetchUser();
     } catch (error) {
@@ -428,13 +432,14 @@ const UserProfile = () => {
                           <p className="card-title">Order id : #{order._id}</p>
                           <p className="card-text">
                             <strong>Status: </strong>
-                            <span className={`${getStatusBadge(order.orderStatus)}`}>
+                            <span
+                              className={`${getStatusBadge(order.orderStatus)}`}
+                            >
                               {order.orderStatus}
                             </span>
                           </p>
                           <p className="text-muted">
                             <strong>Total Amount:</strong> ₹{order.totalAmount}{" "}
-                            
                           </p>
                           <p className="text-muted">
                             <strong>Shipping Address:</strong>
@@ -459,8 +464,8 @@ const UserProfile = () => {
                                     width: "50px",
                                     height: "50px",
                                     objectFit: "cover",
-                                    borderRadius : "5px",
-                                    marginRight : "10px"
+                                    borderRadius: "5px",
+                                    marginRight: "10px",
                                   }}
                                   className="mr-2"
                                 />
@@ -471,9 +476,7 @@ const UserProfile = () => {
                                   <p className="mb-0">
                                     Quantity: {item.quantity}
                                   </p>
-                                  <p className="mb-0">
-                                    Price: ₹ {item.price} 
-                                  </p>
+                                  <p className="mb-0">Price: ₹ {item.price}</p>
                                 </div>
                               </div>
                             ))}

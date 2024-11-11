@@ -25,13 +25,16 @@ const SignUpModal = ({ show, handleClose }) => {
       toast.error("All fields are required.");
       return;
     }
-    
+
     const formData = { name, email, phone, password, userType };
     // Dismiss any existing toasts to avoid duplicates
     toast.dismiss();
 
     try {
-      const res = await axios.post("http://localhost:5000/api/users/create", formData);
+      const res = await axios.post(
+        "https://pet-market-place-server.onrender.com/api/users/create",
+        formData
+      );
       console.log(res.data);
       toast.success("Sign-up successful! Please log in.");
       setError("");
@@ -51,7 +54,7 @@ const SignUpModal = ({ show, handleClose }) => {
   return (
     <>
       {/* Toaster component to display notifications */}
-      <Toaster  />
+      <Toaster />
 
       <Modal show={show} onHide={handleClose} centered>
         <Modal.Header closeButton>
@@ -164,7 +167,11 @@ const SignUpModal = ({ show, handleClose }) => {
         <Modal.Footer>
           <div className={styles.footer}>
             <span>Already have an account?</span>
-            <Button variant="link" className={styles.registerLink} onClick={handleShowLogIn}>
+            <Button
+              variant="link"
+              className={styles.registerLink}
+              onClick={handleShowLogIn}
+            >
               Log in
             </Button>
           </div>

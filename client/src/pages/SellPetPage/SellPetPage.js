@@ -35,7 +35,8 @@ const SellPetPage = () => {
   };
 
   const addImageField = () => {
-    if (imageFiles.length < 5) {  // Allow adding images only if there are fewer than 5 images
+    if (imageFiles.length < 5) {
+      // Allow adding images only if there are fewer than 5 images
       setImageFiles([...imageFiles, null]); // Add an empty slot for a new file
     }
   };
@@ -65,11 +66,15 @@ const SellPetPage = () => {
     //   console.log(pair[0] + ": " + pair[1]);
     // }
     try {
-      const res = await axios.post("http://localhost:5000/api/pets/create", formDataToSend, {
-        headers: {
-          "Authorization": `Bearer ${token}`,
-        },
-      });
+      const res = await axios.post(
+        "https://pet-market-place-server.onrender.com/api/pets/create",
+        formDataToSend,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       console.log(res.data);
       // Clear form after successful submission
       setFormData({
@@ -95,9 +100,13 @@ const SellPetPage = () => {
 
   return (
     <div className={`container my-5 ${styles.formContainer}`}>
-      <Toaster/>
+      <Toaster />
       <h2 className="text-center mb-4">Add a New Pet</h2>
-      <form onSubmit={handleSubmit} encType="multipart/form-data" className="row g-3">
+      <form
+        onSubmit={handleSubmit}
+        encType="multipart/form-data"
+        className="row g-3"
+      >
         <div className="col-md-6">
           <label className="form-label">Name:</label>
           <input
@@ -228,7 +237,9 @@ const SellPetPage = () => {
               type="checkbox"
               name="isAvailable"
               checked={formData.isAvailable}
-              onChange={(e) => setFormData({ ...formData, isAvailable: e.target.checked })}
+              onChange={(e) =>
+                setFormData({ ...formData, isAvailable: e.target.checked })
+              }
               className="form-check-input"
             />
             <label className="form-check-label">Available</label>
@@ -236,7 +247,10 @@ const SellPetPage = () => {
         </div>
 
         <div className="col-12 text-center">
-          <button type="submit" className={`btn btn-primary ${styles.submitButton}`}>
+          <button
+            type="submit"
+            className={`btn btn-primary ${styles.submitButton}`}
+          >
             Submit
           </button>
         </div>
