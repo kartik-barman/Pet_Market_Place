@@ -20,12 +20,11 @@ const SellPetPage = () => {
   });
 
   const [imageFiles, setImageFiles] = useState([null]);
-
   const [errors, setErrors] = useState(null);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData({ ...formData, [name]: name === "price" ? parseFloat(value) : value });
   };
 
   const handleImageChange = (index, e) => {
@@ -36,7 +35,6 @@ const SellPetPage = () => {
 
   const addImageField = () => {
     if (imageFiles.length < 5) {
-      // Allow adding images only if there are fewer than 5 images
       setImageFiles([...imageFiles, null]); // Add an empty slot for a new file
     }
   };
@@ -47,8 +45,20 @@ const SellPetPage = () => {
     setImageFiles(files);
   };
 
+  const validateForm = () => {
+    if (!formData.name || !formData.price || !formData.category || !formData.location) {
+      setErrors("Please fill all required fields.");
+      return false;
+    }
+    return true;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Validate form fields before submitting
+    if (!validateForm()) return;
+
     const formDataToSend = new FormData();
 
     // Append form data fields
@@ -57,17 +67,20 @@ const SellPetPage = () => {
     }
 
     // Append image files
-    imageFiles.forEach((file, index) => {
+    imageFiles.forEach((file) => {
       if (file) {
         formDataToSend.append("images", file);
       }
     });
-    // for (let pair of formDataToSend.entries()) {
-    //   console.log(pair[0] + ": " + pair[1]);
-    // }
+
+    // Check the data before sending it
+    for (let pair of formDataToSend.entries()) {
+      console.log(pair[0] + ": " + pair[1]);
+    }
+
     try {
       const res = await axios.post(
-        "https://pet-market-place-server.onrender.com/api/pets/create",
+        "http://localhost:5000/api/pets/create",
         formDataToSend,
         {
           headers: {
@@ -76,7 +89,6 @@ const SellPetPage = () => {
         }
       );
       console.log(res.data);
-      // Clear form after successful submission
       setFormData({
         name: "",
         location: "",
@@ -90,11 +102,11 @@ const SellPetPage = () => {
         isAvailable: true,
       });
       setImageFiles([null]);
-      toast.success("Pet added successfully!"); // Success toast
+      toast.success("Pet added successfully!");
     } catch (error) {
-      console.error(error);
-      setErrors("Failed to add pet. Please check the form data.");
-      toast.error("Failed to add pet. Please check the form data."); // Error toast
+      console.error("Pet Added Error : ", error.response);
+      setErrors(error.response?.data?.message || "Internal server error! Please try again..");
+      toast.error(error.response?.data?.message || "Internal server error! Please try again..");
     }
   };
 
@@ -102,11 +114,7 @@ const SellPetPage = () => {
     <div className={`container my-5 ${styles.formContainer}`}>
       <Toaster />
       <h2 className="text-center mb-4">Add a New Pet</h2>
-      <form
-        onSubmit={handleSubmit}
-        encType="multipart/form-data"
-        className="row g-3"
-      >
+      <form onSubmit={handleSubmit} encType="multipart/form-data" className="row g-3">
         <div className="col-md-6">
           <label className="form-label">Name:</label>
           <input
@@ -254,6 +262,7 @@ const SellPetPage = () => {
             Submit
           </button>
         </div>
+
         {errors && <p className="text-danger mt-2 text-center">{errors}</p>}
       </form>
     </div>

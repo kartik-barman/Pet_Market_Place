@@ -10,53 +10,53 @@ import { User } from "../models/User.js";
  *__________________________________________________________________________________*/
 export const postPetApi = async (req, res) => {
   try {
-    const imageUrls = []; // This will hold the URLs of the uploaded images
-
-    // Check if files were uploaded
+    // Handle uploaded files
+    const imageUrls = [];
     if (!req.files || req.files.length === 0) {
       return res.status(400).json({ message: "No images uploaded" });
     }
 
-    // Process each uploaded file (image)
+    // Process each file and upload it to Cloudinary
     for (let i = 0; i < req.files.length; i++) {
-      const filePath = path.join('/tmp', req.files[i].filename); // Get the full path of the file
-      const fileBuffer = fs.readFileSync(filePath); // Read the file from /tmp
-      const fileName = req.files[i].originalname; // Get the original file name
+      const fileBuffer = req.files[i].buffer; // Get buffer from file
+      const fileName = req.files[i].originalname;
 
-      // Upload the image to Cloudinary and store the URL
-      const result = await uploadFile(fileBuffer, fileName);
-
-      imageUrls.push(result.secure_url); // Store the secure Cloudinary URL
-
-      // Delete the file from the /tmp directory after upload
-      fs.unlinkSync(filePath);
+      // Upload the file to Cloudinary
+      const result = await uploadFile(fileBuffer, fileName);  
+      imageUrls.push(result.secure_url);
     }
 
-    // Create a new Pet document with the uploaded image URLs and other details
+    // Check for missing fields
+    const { name, location, category, breed, age, price, description } = req.body;
+    if (!name || !location || !category || !breed || !age || !price || !description) {
+      return res.status(400).json({ message: "All fields are required" });
+    }
+
+    // Create a new pet with the form data
     const newPet = new Pet({
-      seller: req.userId, // Assuming the seller is the logged-in user (userId is passed in the request)
-      name: req.body.name,
-      description: req.body.description,
-      price: req.body.price,
-      category: req.body.category,
-      images: imageUrls, // Store the uploaded image URLs in the 'images' field
+      seller: req.userId, 
+      name,
+      location,
+      category,
+      breed,
+      age,
+      description,
+      price,
+      images: imageUrls,
     });
 
-    await newPet.save(); // Save the new pet to the database
+    await newPet.save();
 
-    // Update the user's pets list by pushing the newly created pet ID
-    await User.updateOne(
-      { _id: req.userId }, // Update the user who created the pet
-      { $push: { pets: newPet._id } } // Add the new pet ID to the user's pets array
-    );
+    // Update the user's pets list
+    await User.updateOne({ _id: req.userId }, { $push: { pets: newPet._id } });
 
-    // Respond with the created pet details
     res.status(201).json(newPet);
   } catch (error) {
     console.error("Error creating pet:", error);
     res.status(500).json({ message: "Error creating pet", error: error.message });
   }
 };
+
 
 /*__________________________________________________________________________________*
  *
