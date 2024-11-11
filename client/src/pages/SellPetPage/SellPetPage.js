@@ -80,7 +80,7 @@ const SellPetPage = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/pets/create",
+        "https://pet-market-place-server.onrender.com/api/pets/create",
         formDataToSend,
         {
           headers: {

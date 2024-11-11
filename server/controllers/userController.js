@@ -113,8 +113,9 @@ export const userAvatarUploadApi = async (req, res) => {
  *                    Function to User Profile Update API
  *__________________________________________________________________________________*/
 
+// User profile update API
 export const userUpdateProfileApi = async (req, res) => {
-  const userId = req.userId;
+  const userId = req.userId; // Get userId from authenticated user
 
   try {
     // Initialize an object to hold the fields to update
@@ -122,8 +123,9 @@ export const userUpdateProfileApi = async (req, res) => {
 
     // Check if avatar file is provided, and upload if present
     if (req.files && req.files.avatar && req.files.avatar[0]) {
-      const avatarPath = req.files.avatar[0].path;
-      const avatarUpload = await uploadFile(avatarPath);
+      const avatarBuffer = req.files.avatar[0].buffer;
+      const avatarName = `avatar_${Date.now()}`; // Optional: Use timestamp to avoid file name conflicts
+      const avatarUpload = await uploadFile(avatarBuffer, avatarName);
 
       // Check if the upload was successful
       if (!avatarUpload.secure_url) {
@@ -137,8 +139,9 @@ export const userUpdateProfileApi = async (req, res) => {
 
     // Check if banner file is provided, and upload if present
     if (req.files && req.files.banner && req.files.banner[0]) {
-      const bannerPath = req.files.banner[0].path;
-      const bannerUpload = await uploadFile(bannerPath);
+      const bannerBuffer = req.files.banner[0].buffer;
+      const bannerName = `banner_${Date.now()}`; // Optional: Use timestamp to avoid file name conflicts
+      const bannerUpload = await uploadFile(bannerBuffer, bannerName);
 
       // Check if the upload was successful
       if (!bannerUpload.secure_url) {
@@ -176,7 +179,6 @@ export const userUpdateProfileApi = async (req, res) => {
     });
   }
 };
-
 /*__________________________________________________________________________________*
  *
  *                          Function to User Log In Api

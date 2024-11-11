@@ -120,7 +120,7 @@ const NavBar = () => {
             {/* Action Icons */}
             <div className="d-flex align-items-center ms-lg-4 mt-3 mt-lg-0">
               {isLoggedIn && (
-                <Link to="/cart" className={styles.iconButton}>
+                <Link to="/cart" className={styles.iconButton} onClick={()=> setIsOpen(false)}>
                   <FaShoppingCart className={styles.navIcon} />
                   <span className={`${styles.badge} bg-primary`}>
                     {cartItems?.length || 0}

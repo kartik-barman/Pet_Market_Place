@@ -8,27 +8,28 @@ import { MdSell, MdOutlineShoppingCart } from "react-icons/md"; // Icons for use
 import LogInModal from "../LogInModal/LogInModal";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast"; // Importing React Hot Toast
+import { useAuth } from "../../context/AuthContext"; // Importing AuthContext
 
 const SignUpModal = ({ show, handleClose }) => {
+  const { handleLogin } = useAuth(); // Access the handleLogin function from context
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
-  const [userType, setUserType] = useState("Buyer");
+  const [role, setRole] = useState("Buyer");
   const [error, setError] = useState("");
   const [showLogIn, setShowLogIn] = useState(false);
 
   const handleSignUp = async (e) => {
     e.preventDefault();
-    if (!name || !email || !phone || !password || !userType) {
+    if (!name || !email || !phone || !password || !role) {
       setError("All fields are required.");
       toast.error("All fields are required.");
       return;
     }
 
-    const formData = { name, email, phone, password, userType };
-    // Dismiss any existing toasts to avoid duplicates
-    toast.dismiss();
+    const formData = { name, email, phone, password, role };
+    toast.dismiss(); // Dismiss any existing toasts to avoid duplicates
 
     try {
       const res = await axios.post(
@@ -36,13 +37,32 @@ const SignUpModal = ({ show, handleClose }) => {
         formData
       );
       console.log(res.data);
-      toast.success("Sign-up successful! Please log in.");
-      setError("");
-      setShowLogIn(true);
-      handleClose(); // Close sign-up modal after successful sign-up
+      toast.success("Sign-up successful! Logging you in...");
+
+      // Call login API immediately after successful sign-up
+      const loginFormData = { email, password };
+      const loginRes = await axios.post(
+        "https://pet-market-place-server.onrender.com/api/users/login",
+        loginFormData
+      );
+      const { success, msg, token, user } = loginRes.data;
+
+      if (success) {
+        // Show success toast
+        toast.success(msg);
+
+        // Store login state and user details in localStorage using handleLogin
+        handleLogin(token, user);
+
+        // Close sign-up modal and open login modal if needed
+        handleClose(); // Close sign-up modal after successful login
+      } else {
+        setError(msg);
+        toast.error(msg);
+      }
     } catch (err) {
       console.error(err);
-      toast.error("Sign-up failed. Please try again.");
+      toast.error("An error occurred. Please try again.");
     }
   };
 
@@ -132,10 +152,10 @@ const SignUpModal = ({ show, handleClose }) => {
                       <MdOutlineShoppingCart className={styles.icon} /> Buyer
                     </>
                   }
-                  name="userType"
+                  name="role"
                   value="Buyer"
-                  checked={userType === "Buyer"}
-                  onChange={() => setUserType("Buyer")}
+                  checked={role === "Buyer"}
+                  onChange={() => setRole("Buyer")}
                   className={styles.radioOption}
                 />
                 <Form.Check
@@ -146,10 +166,10 @@ const SignUpModal = ({ show, handleClose }) => {
                       <MdSell className={styles.icon} /> Seller
                     </>
                   }
-                  name="userType"
+                  name="role"
                   value="Seller"
-                  checked={userType === "Seller"}
-                  onChange={() => setUserType("Seller")}
+                  checked={role === "Seller"}
+                  onChange={() => setRole("Seller")}
                   className={styles.radioOption}
                 />
               </div>
@@ -180,7 +200,10 @@ const SignUpModal = ({ show, handleClose }) => {
 
       {/* Conditionally render LogInModal */}
       {showLogIn && (
-        <LogInModal show={showLogIn} handleClose={() => setShowLogIn(false)} />
+        <LogInModal
+          show={showLogIn}
+          handleClose={() => setShowLogIn(false)}
+        />
       )}
     </>
   );

@@ -25,13 +25,14 @@ const router = express.Router();
 
 // Configure multer with memory storage
 const upload = multer({ storage: multer.memoryStorage() }); 
-// Create User
-router.post("/create", userCreateApi);
 
-// User Avatar Upload
+// Create User
+// router.post("/create", userCreateApi);
+
+// User Avatar Upload (Example - Not used here, but you can modify and use it)
 router.post(
   "/upload-avatar",
-  upload.single("avatar"),
+  upload.single("avatar"), // Single file upload for avatar
   checkLogIn,
   userAvatarUploadApi
 );
@@ -39,7 +40,7 @@ router.post(
 // Update profile with avatar and banner images
 router.post(
   "/update-profile",
-  upload.fields([
+  upload.fields([ // Multiple files upload
     { name: "avatar", maxCount: 1 },
     { name: "banner", maxCount: 1 },
   ]),
@@ -50,6 +51,7 @@ router.post(
 // Log in user
 router.post("/login", loginUserApi);
 
+// Fetch user details
 router.get("/user", checkLogIn, fetchIndivisualUserApi);
 
 // Get Particular User Globally Show
@@ -71,6 +73,7 @@ router.delete("/cart/items", checkLogIn, deleteAllCartItemsApi);
 router.put("/cart/item/:id", checkLogIn, cartItemQuantityUpdateApi);
 
 /*__________________Admin Route_______________________*/
+
 // Fetch All Users
 router.get("/", checkLogIn, fetchAllUserApi);
 
