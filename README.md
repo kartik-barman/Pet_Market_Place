@@ -57,7 +57,7 @@
 │   └── public/
 │       └── index.html        # Main HTML file
 └── README.md
-
+```
 
 ### Frontend
 - **React**: For creating a dynamic and interactive user interface.
@@ -76,7 +76,7 @@
 
 ### Storage
 - **MongoDB Atlas**: Hosted MongoDB database for storing persistent data like users, pets, and orders.
-```
+
 ---
 ## 🛠️ API Endpoints
 
@@ -111,3 +111,31 @@
    ```bash
    git clone https://github.com/yourusername/pet-marketplace.git
    cd pet-marketplace
+   ```
+   ## 🤝 Contributing
+
+We welcome contributions to this project! If you have any suggestions or find a bug, feel free to open an issue or a pull request.
+
+### How to Contribute:
+1. Fork this repository.
+2. Create a new branch:  
+   `git checkout -b feature-name`
+3. Make your changes.
+4. Commit your changes:  
+   `git commit -m 'Add feature'`
+5. Push to your forked repository:  
+   `git push origin feature-name`
+6. Create a pull request.
+
+---
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+---
+
+## 📜 Footer
+
+**Pet Marketplace** by [Kartik Barman](https://pet-market-place-app.vercel.app)  
+Developed with ❤️ for pet enthusiasts everywhere!
+
