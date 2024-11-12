@@ -33,7 +33,7 @@ const SignUpModal = ({ show, handleClose }) => {
 
     try {
       const res = await axios.post(
-        "https://pet-market-place-server.onrender.com/api/users/create",
+        "http://localhost:5000/api/users/create",
         formData
       );
       console.log(res.data);

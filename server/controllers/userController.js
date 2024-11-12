@@ -16,9 +16,7 @@ import { signUpMailSender } from "../Helper/SignUpMailSent.js";
 export const userCreateApi = async (req, res) => {
   const { name, email, password } = req.body;
   try {
-    const existingUser = await User.findOne({
-      $or: [{ email }, { name }],
-    });
+    const existingUser = await User.findOne({email});
     if (existingUser) {
       return res.status(400).json({
         success: false,

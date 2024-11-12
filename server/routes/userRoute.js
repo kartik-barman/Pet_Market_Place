@@ -27,7 +27,7 @@ const router = express.Router();
 const upload = multer({ storage: multer.memoryStorage() }); 
 
 // Create User
-// router.post("/create", userCreateApi);
+router.post("/create", userCreateApi);
 
 // User Avatar Upload (Example - Not used here, but you can modify and use it)
 router.post(
