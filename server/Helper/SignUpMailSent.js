@@ -23,7 +23,7 @@ Best regards,
 The Pet Marketplace Team`;
 
   const html = `
-    <p>Hi there,</p>
+    <p>Hi ${name},</p>
     <p>Thank you for joining <strong>Pet Marketplace</strong>! We’re thrilled to welcome you to our community of passionate pet lovers.</p>
     <p>Here’s what you can do:</p>
     <ul>

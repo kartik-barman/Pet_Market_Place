@@ -35,7 +35,6 @@ const PetDetails = () => {
         `https://pet-market-place-server.onrender.com/api/pets/${petId}`
       );
       setPet(res.data.pet);
-      console.log("orders : ", res.data.pet.orders);
     } catch (err) {
       console.error("Error fetching pet data:", err);
     }
@@ -63,7 +62,7 @@ const PetDetails = () => {
   const handleCommentSubmit = async (e) => {
     e.preventDefault();
     if (!token) {
-      alert("Log in first then try commenting.");
+      toast.error("Log in first then try commenting.");
       return;
     }
     try {
@@ -82,7 +81,7 @@ const PetDetails = () => {
   const handleReplySubmit = async (e, commentId) => {
     e.preventDefault();
     if (!token) {
-      alert("Log in first then try replying.");
+      toast.error("Log in first then try replying.");
       return;
     }
     try {
@@ -115,20 +114,27 @@ const PetDetails = () => {
       className={`${styles.commentCard} ${isReply ? "ms-5" : ""}`}
     >
       <div className={styles.commentHeader}>
-        {comment.user.avatar ? (
-          <img
-            src={comment.user.avatar}
-            alt={comment.user.name}
-            className={styles.avatar}
-          />
+        {comment.user ? (
+          <>
+            {comment.user.avatar ? (
+              <img
+                src={comment.user.avatar}
+                alt={comment.user.name}
+                className={styles.avatar}
+              />
+            ) : (
+              <div
+                className={`bg-primary text-white fw-bold ${styles.avatar} d-flex justify-content-center align-items-center`}
+              >
+                {comment.user.name[0].toUpperCase()}
+              </div>
+            )}
+            {comment.user.name.charAt(0).toUpperCase() +
+              comment.user.name.slice(1)}
+          </>
         ) : (
-          <div
-            className={`bg-primary text-white fw-bold ${styles.avatar} d-flex justify-content-center align-items-center`}
-          >
-            {comment.user.name[0].toUpperCase()}
-          </div>
+          <span className="text-muted">Unknown User</span>
         )}
-        {comment.user.name.charAt(0).toUpperCase() + comment.user.name.slice(1)}
         <span className={styles.commentTime}>
           {new Date(comment.createdAt).toLocaleDateString()}
         </span>
@@ -286,16 +292,11 @@ const PetDetails = () => {
                   value={commentText}
                   onChange={(e) => setCommentText(e.target.value)}
                 />
-                <button
-                  className={`${styles.actionButton} ${styles.adoptButton}`}
-                >
+                <button className={`${styles.actionButton} ${styles.adoptButton}`}>
                   Post Comment
                 </button>
               </form>
-
-              <div className={styles.commentsList}>
-                {pet.comments.map((comment) => renderComment(comment))}
-              </div>
+              {pet.comments.map((comment) => renderComment(comment))}
             </div>
           </div>
         </div>
