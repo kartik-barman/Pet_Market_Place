@@ -12,7 +12,7 @@ const Hero = () => {
             <p className={styles.heroSubtitle}>
               Find and adopt the best companions that bring joy, love, and loyalty into your life. Explore our extensive collection of pets available for adoption and find the perfect match.
             </p>
-            <Link to="/explore" className={`btn ${styles.heroButton}`}>
+            <Link to="/" className={`btn ${styles.heroButton}`}>
               Explore Pets
             </Link>
           </div>
