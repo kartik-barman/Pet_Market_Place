@@ -76,8 +76,27 @@
 
 ### Storage
 - **MongoDB Atlas**: Hosted MongoDB database for storing persistent data like users, pets, and orders.
-
+```
 ---
+## 🛠️ API Endpoints
+
+### User API
+- **POST /api/users/create**: Register a new user.
+- **POST /api/users/login**: Login and get a JWT token.
+
+### Pet API
+- **GET /api/pets**: Get all available pets.
+- **GET /api/pets/:id**: Get details of a specific pet by ID.
+- **POST /api/pets**: Add a new pet listing (Seller only).
+- **PUT /api/pets/:id**: Update a pet listing (Seller only).
+- **DELETE /api/pets/:id**: Delete a pet listing (Seller only).
+
+### Order API
+- **POST /api/orders**: Create a new order.
+- **GET /api/orders/:userId**: Get all orders for a user.
+
+### Payment API
+- **POST /api/payment/razorpay**: Create a Razorpay order for a pet purchase.
 
 ## 📦 Installation
 
