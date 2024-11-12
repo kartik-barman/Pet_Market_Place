@@ -39,6 +39,26 @@
 
 ## 🛠️ Tech Stack
 
+pet-marketplace/
+├── server/
+│   ├── controllers/          # API controllers
+│   ├── models/               # MongoDB schemas (User, Pet, Order)
+│   ├── routes/               # Express routes
+│   ├── server.js             # Backend entry point
+│   ├── .env                  # Environment variables
+│   └── config/               # Configuration files (e.g., Razorpay)
+├── client/
+│   ├── src/
+│   │   ├── components/       # React components (navbar, footer, etc.)
+│   │   ├── pages/            # React pages (home, profile, etc.)
+│   │   ├── context/          # React context for state management
+│   │   ├── services/         # Axios services for API calls
+│   │   └── App.js            # Main React app component
+│   └── public/
+│       └── index.html        # Main HTML file
+└── README.md
+
+
 ### Frontend
 - **React**: For creating a dynamic and interactive user interface.
 - **CSS Modules**: Ensures modular, maintainable styling across components.
