@@ -39,7 +39,7 @@
 
 ## 🛠️ Tech Stack
 
-pet-marketplace/
+``` Pet-Market_Place/
 ├── server/
 │   ├── controllers/          # API controllers
 │   ├── models/               # MongoDB schemas (User, Pet, Order)
