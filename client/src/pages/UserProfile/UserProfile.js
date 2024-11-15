@@ -69,7 +69,7 @@ const UserProfile = () => {
   const fetchUser = async () => {
     try {
       const res = await axios.get(
-        "https://pet-market-place-server.onrender.com/api/users/user",
+        "https://pet-market-place-api-server.vercel.app/api/users/user",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -139,7 +139,7 @@ const UserProfile = () => {
 
     try {
       const res = await axios.post(
-        "https://pet-market-place-server.onrender.com/api/users/update-profile",
+        "https://pet-market-place-api-server.vercel.app/api/users/update-profile",
         formData,
         {
           headers: {

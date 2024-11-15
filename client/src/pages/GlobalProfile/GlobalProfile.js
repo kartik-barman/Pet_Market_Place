@@ -19,7 +19,7 @@ const GlobalProfile = () => {
   const fetchUser = async () => {
     try {
       const res = await axios.get(
-        `https://pet-market-place-server.onrender.com/api/users/user/${userId}`
+        `https://pet-market-place-api-server.vercel.app/api/users/user/${userId}`
       );
       const { user } = res.data;
       setUser(user);

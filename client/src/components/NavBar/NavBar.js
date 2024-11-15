@@ -31,7 +31,7 @@ const NavBar = () => {
     if (!isLoggedIn) return; // Fetch only if logged in
     try {
       const res = await axios.get(
-        "https://pet-market-place-server.onrender.com/api/users/cart/",
+        "https://pet-market-place-api-server.vercel.app/api/users/cart/",
         {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         }
@@ -120,7 +120,11 @@ const NavBar = () => {
             {/* Action Icons */}
             <div className="d-flex align-items-center ms-lg-4 mt-3 mt-lg-0">
               {isLoggedIn && (
-                <Link to="/cart" className={styles.iconButton} onClick={()=> setIsOpen(false)}>
+                <Link
+                  to="/cart"
+                  className={styles.iconButton}
+                  onClick={() => setIsOpen(false)}
+                >
                   <FaShoppingCart className={styles.navIcon} />
                   <span className={`${styles.badge} bg-primary`}>
                     {cartItems?.length || 0}

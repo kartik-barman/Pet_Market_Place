@@ -24,7 +24,10 @@ const SellPetPage = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: name === "price" ? parseFloat(value) : value });
+    setFormData({
+      ...formData,
+      [name]: name === "price" ? parseFloat(value) : value,
+    });
   };
 
   const handleImageChange = (index, e) => {
@@ -46,7 +49,12 @@ const SellPetPage = () => {
   };
 
   const validateForm = () => {
-    if (!formData.name || !formData.price || !formData.category || !formData.location) {
+    if (
+      !formData.name ||
+      !formData.price ||
+      !formData.category ||
+      !formData.location
+    ) {
       setErrors("Please fill all required fields.");
       return false;
     }
@@ -55,7 +63,7 @@ const SellPetPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     // Validate form fields before submitting
     if (!validateForm()) return;
 
@@ -80,7 +88,7 @@ const SellPetPage = () => {
 
     try {
       const res = await axios.post(
-        "https://pet-market-place-server.onrender.com/api/pets/create",
+        "https://pet-market-place-api-server.vercel.app/api/pets/create",
         formDataToSend,
         {
           headers: {
@@ -105,8 +113,14 @@ const SellPetPage = () => {
       toast.success("Pet added successfully!");
     } catch (error) {
       console.error("Pet Added Error : ", error.response);
-      setErrors(error.response?.data?.message || "Internal server error! Please try again..");
-      toast.error(error.response?.data?.message || "Internal server error! Please try again..");
+      setErrors(
+        error.response?.data?.message ||
+          "Internal server error! Please try again.."
+      );
+      toast.error(
+        error.response?.data?.message ||
+          "Internal server error! Please try again.."
+      );
     }
   };
 
@@ -114,7 +128,11 @@ const SellPetPage = () => {
     <div className={`container my-5 ${styles.formContainer}`}>
       <Toaster />
       <h2 className="text-center mb-4">Add a New Pet</h2>
-      <form onSubmit={handleSubmit} encType="multipart/form-data" className="row g-3">
+      <form
+        onSubmit={handleSubmit}
+        encType="multipart/form-data"
+        className="row g-3"
+      >
         <div className="col-md-6">
           <label className="form-label">Name:</label>
           <input

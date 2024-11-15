@@ -12,7 +12,7 @@ const ProductOrderDetails = () => {
   const fetchAllOrder = async () => {
     try {
       const res = await axios.get(
-        `https://pet-market-place-server.onrender.com/api/pets/pet/orders/${productId}`
+        `https://pet-market-place-api-server.vercel.app/api/pets/pet/orders/${productId}`
       );
       setOrders(res.data);
       console.log(res.data);
@@ -45,7 +45,7 @@ const ProductOrderDetails = () => {
   const updateStatus = async (orderId, newStatus) => {
     try {
       const res = await axios.put(
-        `https://pet-market-place-server.onrender.com/api/orders/${orderId}/status`,
+        `https://pet-market-place-api-server.vercel.app/api/orders/${orderId}/status`,
         { orderStatus: newStatus },
         { headers: { Authorization: `Bearer ${token}` } }
       );

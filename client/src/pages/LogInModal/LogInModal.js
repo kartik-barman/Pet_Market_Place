@@ -26,7 +26,7 @@ const LogInModal = ({ show, handleClose }) => {
     try {
       const formData = { email, password };
       const response = await axios.post(
-        "https://pet-market-place-server.onrender.com/api/users/login",
+        "https://pet-market-place-api-server.vercel.app/api/users/login",
         formData
       );
       const { success, msg, token, user } = response.data;

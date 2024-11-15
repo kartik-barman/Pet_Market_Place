@@ -32,7 +32,7 @@ const PetDetails = () => {
   const fetchPet = async () => {
     try {
       const res = await axios.get(
-        `https://pet-market-place-server.onrender.com/api/pets/${petId}`
+        `https://pet-market-place-api-server.vercel.app/api/pets/${petId}`
       );
       setPet(res.data.pet);
     } catch (err) {
@@ -47,7 +47,7 @@ const PetDetails = () => {
     }
     try {
       const res = await axios.put(
-        `https://pet-market-place-server.onrender.com/api/users/cart/${petId}`,
+        `https://pet-market-place-api-server.vercel.app/api/users/cart/${petId}`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -67,7 +67,7 @@ const PetDetails = () => {
     }
     try {
       await axios.post(
-        `https://pet-market-place-server.onrender.com/api/pets/comment/${petId}`,
+        `https://pet-market-place-api-server.vercel.app/api/pets/comment/${petId}`,
         { commentText },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -86,7 +86,7 @@ const PetDetails = () => {
     }
     try {
       await axios.post(
-        `https://pet-market-place-server.onrender.com/api/pets/comment/${petId}/reply`,
+        `https://pet-market-place-api-server.vercel.app/api/pets/comment/${petId}/reply`,
         { commentId, replyText },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -292,7 +292,9 @@ const PetDetails = () => {
                   value={commentText}
                   onChange={(e) => setCommentText(e.target.value)}
                 />
-                <button className={`${styles.actionButton} ${styles.adoptButton}`}>
+                <button
+                  className={`${styles.actionButton} ${styles.adoptButton}`}
+                >
                   Post Comment
                 </button>
               </form>

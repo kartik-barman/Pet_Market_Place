@@ -33,7 +33,7 @@ const OrderForm = () => {
     if (!token) return; // Prevent fetching if not authenticated
     try {
       const res = await axios.get(
-        "https://pet-market-place-server.onrender.com/api/users/cart/",
+        "https://pet-market-place-api-server.vercel.app/api/users/cart/",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -88,7 +88,7 @@ const OrderForm = () => {
       }));
 
       const response = await axios.post(
-        "https://pet-market-place-server.onrender.com/api/users/order",
+        "https://pet-market-place-api-server.vercel.app/api/users/order",
         { amount, currency }
       );
       const { order_id } = response.data;
@@ -110,7 +110,7 @@ const OrderForm = () => {
           navigate("/cart");
           try {
             const res = await axios.delete(
-              `https://pet-market-place-server.onrender.com/api/users/cart/items`,
+              `https://pet-market-place-api-server.vercel.app/api/users/cart/items`,
               {
                 headers: {
                   Authorization: `Bearer ${token}`,
@@ -125,7 +125,7 @@ const OrderForm = () => {
           // Once payment is successful, send the order to the backend
           try {
             const paymentSuccessResponseSent = await axios.post(
-              "https://pet-market-place-server.onrender.com/api/users/pet/order/create",
+              "https://pet-market-place-api-server.vercel.app/api/users/pet/order/create",
               {
                 items: orderItems,
                 paymentStatus: response.razorpay_payment_status,

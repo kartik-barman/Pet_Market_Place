@@ -28,7 +28,7 @@ const Cart = () => {
     if (!token) return; // Prevent fetching if not authenticated
     try {
       const res = await axios.get(
-        "https://pet-market-place-server.onrender.com/api/users/cart/",
+        "https://pet-market-place-api-server.vercel.app/api/users/cart/",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -49,7 +49,7 @@ const Cart = () => {
   const updateQuantity = async (id, newQuantity) => {
     try {
       const res = await axios.put(
-        `https://pet-market-place-server.onrender.com/api/users/cart/item/${id}`,
+        `https://pet-market-place-api-server.vercel.app/api/users/cart/item/${id}`,
         { newQuantity },
         {
           headers: {
@@ -70,7 +70,7 @@ const Cart = () => {
   const removeFromCart = async (id) => {
     try {
       const res = await axios.delete(
-        `https://pet-market-place-server.onrender.com/api/users/cart/item/${id}`,
+        `https://pet-market-place-api-server.vercel.app/api/users/cart/item/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

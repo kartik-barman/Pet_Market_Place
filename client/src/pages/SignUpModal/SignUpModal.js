@@ -33,7 +33,7 @@ const SignUpModal = ({ show, handleClose }) => {
 
     try {
       const res = await axios.post(
-        "https://pet-market-place-server.onrender.com/api/users/create",
+        "https://pet-market-place-api-server.vercel.app/api/users/create",
         formData
       );
       console.log(res.data);
@@ -42,7 +42,7 @@ const SignUpModal = ({ show, handleClose }) => {
       // Call login API immediately after successful sign-up
       const loginFormData = { email, password };
       const loginRes = await axios.post(
-        "https://pet-market-place-server.onrender.com/api/users/login",
+        "https://pet-market-place-api-server.vercel.app/api/users/login",
         loginFormData
       );
       const { success, msg, token, user } = loginRes.data;
@@ -200,10 +200,7 @@ const SignUpModal = ({ show, handleClose }) => {
 
       {/* Conditionally render LogInModal */}
       {showLogIn && (
-        <LogInModal
-          show={showLogIn}
-          handleClose={() => setShowLogIn(false)}
-        />
+        <LogInModal show={showLogIn} handleClose={() => setShowLogIn(false)} />
       )}
     </>
   );

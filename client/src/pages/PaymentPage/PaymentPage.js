@@ -43,7 +43,7 @@ const PaymentPage = () => {
   const fetchCartItems = async () => {
     try {
       const res = await axios.get(
-        "https://pet-market-place-server.onrender.com/api/users/cart/",
+        "https://pet-market-place-api-server.vercel.app/api/users/cart/",
         {
           headers: {
             Authorization: `Bearer ${token}`,

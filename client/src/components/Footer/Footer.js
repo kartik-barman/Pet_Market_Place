@@ -18,7 +18,7 @@ const Footer = () => {
   const handleSubscibeBtn = async () => {
     try {
       const res = await axios.post(
-        "https://pet-market-place-server.onrender.com/api/users/subscribe",
+        "https://pet-market-place-api-server.vercel.app/api/users/subscribe",
         {
           email,
         }

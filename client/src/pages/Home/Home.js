@@ -32,7 +32,7 @@ const Home = () => {
   const fetchPet = async () => {
     try {
       const res = await axios.get(
-        "https://pet-market-place-server.onrender.com/api/pets"
+        "https://pet-market-place-api-server.vercel.app/api/pets"
       );
 
       const result = res.data;
@@ -66,7 +66,7 @@ const Home = () => {
       }
 
       const res = await axios.put(
-        `https://pet-market-place-server.onrender.com/api/pets/view/${petId}`,
+        `https://pet-market-place-api-server.vercel.app/api/pets/view/${petId}`,
         {},
         {
           headers: {

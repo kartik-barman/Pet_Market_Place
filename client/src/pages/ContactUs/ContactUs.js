@@ -44,7 +44,7 @@ const ContactUs = () => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        "https://pet-market-place-server.onrender.com/api/users/contact",
+        "https://pet-market-place-api-server.vercel.app/api/users/contact",
         formData
       );
       const result = res.data;
